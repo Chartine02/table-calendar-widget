@@ -27,6 +27,7 @@ class _AddEventDialogState extends State<AddEventDialog> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          // --- Event creation with title, description, and time ---
           TextField(
             controller: titleController,
             decoration: const InputDecoration(
@@ -44,6 +45,7 @@ class _AddEventDialogState extends State<AddEventDialog> {
             maxLines: 3,
           ),
           const SizedBox(height: 16),
+          // ---Time picker integration for event time ---
           Row(
             children: [
               Expanded(
@@ -76,6 +78,7 @@ class _AddEventDialogState extends State<AddEventDialog> {
           onPressed: () => Navigator.pop(context, null),
           child: const Text('Cancel'),
         ),
+        // --- Validation before returning the event ---
         ElevatedButton(
           onPressed: () {
             if (titleController.text.isNotEmpty && selectedTime != null) {

@@ -156,6 +156,8 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
       ),
       body: Column(
         children: [
+          // --- Calendar Format Switching ---
+          // User can switch between month, two-week, and week views
           Container(
             padding: const EdgeInsets.all(16),
             child: Row(
@@ -167,6 +169,9 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
               ],
             ),
           ),
+
+        // --- Custom Calendar Styling & Builders ---
+          // TableCalendar is highly customizable: custom styles, event markers, and day cell builders
           TableCalendar<Event>(
             firstDay: DateTime.utc(2020, 1, 1),
             lastDay: DateTime.utc(2030, 12, 31),
@@ -341,6 +346,9 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
             ),
           ),
           const SizedBox(height: 16),
+
+          // --- Event Management (Add/Delete) ---
+          // Users can add events (with time) using the + button, and delete them from the event list
           Expanded(child: _buildEventsList()),
         ],
       ),
