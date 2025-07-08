@@ -1,16 +1,50 @@
-# table_calendar
+# Table Calendar Widget Demo
 
-A new Flutter project.
+This project is a demo of the [table_calendar](https://pub.dev/packages/table_calendar) Flutter widget. It showcases all major features, customizations, and interactive capabilities, making it ideal for presentations or as a reference for integrating a calendar into your own Flutter apps.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Multiple Calendar Formats:** Switch between month, two-week, and week views.
+- **Event Management:**
+  - Add events with a title, description, and time (using a time picker).
+  - View events for a selected day or a date range.
+  - Delete events interactively.
+- **Custom Styling:**
+  - Fully themed for both light and dark modes.
+  - Custom decorations for selected, today, range, weekends, and outside days.
+  - Custom event markers and day cell builders.
+- **Range Selection:** Select a range of dates to see all events in that period.
+- **Responsive UI:** Modern Material 3 design, works on all platforms supported by Flutter.
 
-A few resources to get you started if this is your first Flutter project:
+## How to Use
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. **Clone the repository and install dependencies:**
+   ```sh
+   flutter pub get
+   ```
+2. **Run the app:**
+   ```sh
+   flutter run
+   ```
+3. **Interact with the calendar:**
+   - Tap a day to select it and view its events.
+   - Tap the "+" button to add a new event (with time and description).
+   - Switch calendar formats using the buttons at the top.
+   - Select a range by tapping and dragging across days.
+   - Delete events using the trash icon next to each event.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Customization
+
+- All styles (colors, fonts, decorations) can be easily customized in the code.
+- The event model can be extended to include more fields (e.g., location, attendees).
+- The calendar supports localization and can be themed to match your app.
+
+## About table_calendar
+
+[table_calendar](https://pub.dev/packages/table_calendar) is a powerful and flexible Flutter widget for displaying calendars. It supports:
+
+- Multiple formats (month, week, two weeks)
+- Event markers
+- Range selection
+- Custom builders for day cells, headers, and more
+- Full theming and localization
