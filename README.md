@@ -1,6 +1,7 @@
 # Table Calendar Widget Demo
 
-This project is a demo of the [table_calendar](https://pub.dev/packages/table_calendar) Flutter widget. It showcases all major features, customizations, and interactive capabilities, making it ideal for presentations or as a reference for integrating a calendar into your own Flutter apps.
+This project is a demo of the [table_calendar](https://pub.dev/packages/table_calendar) Flutter widget. 
+This widget displays full calendars with customizable day selection, styles, and event markers.
 
 ## Features
 
@@ -32,6 +33,11 @@ This project is a demo of the [table_calendar](https://pub.dev/packages/table_ca
    - Switch calendar formats using the buttons at the top.
    - Select a range by tapping and dragging across days.
    - Delete events using the trash icon next to each event.
+
+## Screenshot
+![image](https://github.com/user-attachments/assets/2da18743-8728-4fcb-bf22-6219d27ed86f)
+
+
 
 ## Customization
 
