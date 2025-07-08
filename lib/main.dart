@@ -74,12 +74,10 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
     super.dispose();
   }
 
-  // Sample events for demonstration
   Map<DateTime, List<Event>> _getEvents() {
     final now = DateTime.now();
     final events = <DateTime, List<Event>>{};
 
-    // Add some sample events
     events[DateTime(now.year, now.month, now.day)] = [
       Event(
         'Team Meeting',
@@ -184,14 +182,12 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
           IconButton(
             icon: const Icon(Icons.brightness_6),
             onPressed: () {
-              // Toggle theme (you can implement theme switching here)
             },
           ),
         ],
       ),
       body: Column(
         children: [
-          // Calendar Format Selector
           Container(
             padding: const EdgeInsets.all(16),
             child: Row(
@@ -204,7 +200,6 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
             ),
           ),
 
-          // Main Calendar Widget
           TableCalendar<Event>(
             firstDay: DateTime.utc(2020, 1, 1),
             lastDay: DateTime.utc(2030, 12, 31),
@@ -220,12 +215,9 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
             onFormatChanged: _onFormatChanged,
             onPageChanged: _onPageChanged,
 
-            // Event markers
             eventLoader: _getEventsForDay,
 
-            // Custom styling
             calendarStyle: CalendarStyle(
-              // Selected day styling
               selectedDecoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary,
                 shape: BoxShape.circle,
@@ -235,7 +227,6 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
                 fontWeight: FontWeight.bold,
               ),
 
-              // Today styling
               todayDecoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
                 shape: BoxShape.circle,
@@ -245,7 +236,6 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
                 fontWeight: FontWeight.bold,
               ),
 
-              // Range styling
               rangeHighlightColor: Theme.of(
                 context,
               ).colorScheme.primary.withOpacity(0.1),
@@ -258,23 +248,19 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
                 shape: BoxShape.circle,
               ),
 
-              // Weekend styling
               weekendTextStyle: TextStyle(
                 color: Theme.of(context).colorScheme.error,
               ),
 
-              // Outside days styling
               outsideDaysVisible: true,
               outsideTextStyle: TextStyle(
                 color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
               ),
 
-              // Default day styling
               defaultTextStyle: TextStyle(
                 color: Theme.of(context).colorScheme.onSurface,
               ),
 
-              // Event marker styling
               markerDecoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondary,
                 shape: BoxShape.circle,
@@ -283,7 +269,6 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
               markerMargin: const EdgeInsets.symmetric(horizontal: 0.3),
             ),
 
-            // Header styling
             headerStyle: HeaderStyle(
               formatButtonVisible: true,
               titleCentered: true,
@@ -311,7 +296,6 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
               ),
             ),
 
-            // Days of week styling
             daysOfWeekStyle: DaysOfWeekStyle(
               weekdayStyle: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
@@ -323,9 +307,7 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
               ),
             ),
 
-            // Calendar builders for custom day widgets
             calendarBuilders: CalendarBuilders(
-              // Custom marker builder
               markerBuilder: (context, date, events) {
                 if (events.isNotEmpty) {
                   return Positioned(
@@ -353,7 +335,6 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
                 return null;
               },
 
-              // Custom selected day builder
               selectedBuilder: (context, date, _) {
                 return Container(
                   margin: const EdgeInsets.all(4.0),
@@ -382,7 +363,6 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
                 );
               },
 
-              // Custom today builder
               todayBuilder: (context, date, _) {
                 return Container(
                   margin: const EdgeInsets.all(4.0),
@@ -409,12 +389,10 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
 
           const SizedBox(height: 16),
 
-          // Events List
           Expanded(child: _buildEventsList()),
         ],
       ),
 
-      // Floating Action Button for adding events
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _showAddEventDialog();
