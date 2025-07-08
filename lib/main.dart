@@ -81,21 +81,45 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
 
     // Add some sample events
     events[DateTime(now.year, now.month, now.day)] = [
-      Event('Team Meeting', 'Discuss project progress'),
-      Event('Lunch with Client', 'Business lunch'),
+      Event(
+        'Team Meeting',
+        'Discuss project progress',
+        const TimeOfDay(hour: 10, minute: 0),
+      ),
+      Event(
+        'Lunch with Client',
+        'Business lunch',
+        const TimeOfDay(hour: 13, minute: 0),
+      ),
     ];
 
     events[DateTime(now.year, now.month, now.day + 2)] = [
-      Event('Doctor Appointment', 'Annual checkup'),
+      Event(
+        'Doctor Appointment',
+        'Annual checkup',
+        const TimeOfDay(hour: 9, minute: 30),
+      ),
     ];
 
     events[DateTime(now.year, now.month, now.day + 5)] = [
-      Event('Birthday Party', 'Friend\'s birthday'),
-      Event('Movie Night', 'Watch new release'),
+      Event(
+        'Birthday Party',
+        'Friend\'s birthday',
+        const TimeOfDay(hour: 18, minute: 0),
+      ),
+      Event(
+        'Movie Night',
+        'Watch new release',
+        const TimeOfDay(hour: 20, minute: 0),
+      ),
     ];
 
     events[DateTime(now.year, now.month, now.day + 10)] = [
-      Event('Conference Call', 'International meeting'),
+      Event(
+        'Conference Call',
+        'International meeting',
+        const TimeOfDay(hour: 16, minute: 0),
+      ),
     ];
 
     return events;
@@ -488,7 +512,9 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
                             event.title,
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          subtitle: Text(event.description),
+                          subtitle: Text(
+                            '${event.time.format(context)}\n${event.description}',
+                          ),
                           trailing: IconButton(
                             icon: const Icon(Icons.delete),
                             onPressed: () {
@@ -507,6 +533,7 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
   void _showAddEventDialog() {
     final titleController = TextEditingController();
     final descriptionController = TextEditingController();
+    TimeOfDay? selectedTime;
 
     showDialog(
       context: context,
@@ -532,6 +559,32 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
                   ),
                   maxLines: 3,
                 ),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        icon: const Icon(Icons.access_time),
+                        label: Text(
+                          selectedTime == null
+                              ? 'Pick Time'
+                              : selectedTime?.format(context) ?? '',
+                        ),
+                        onPressed: () async {
+                          final picked = await showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.now(),
+                          );
+                          if (picked != null) {
+                            setState(() {
+                              selectedTime = picked;
+                            });
+                          }
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
             actions: [
@@ -541,10 +594,14 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
               ),
               ElevatedButton(
                 onPressed: () {
-                  if (titleController.text.isNotEmpty) {
+                  if (titleController.text.isNotEmpty && selectedTime != null) {
                     _addEvent(
                       _selectedDay ?? _focusedDay,
-                      Event(titleController.text, descriptionController.text),
+                      Event(
+                        titleController.text,
+                        descriptionController.text,
+                        selectedTime!,
+                      ),
                     );
                     Navigator.pop(context);
                   }
@@ -580,8 +637,9 @@ class _CalendarDemoPageState extends State<CalendarDemoPage>
 class Event {
   final String title;
   final String description;
+  final TimeOfDay time;
 
-  Event(this.title, this.description);
+  Event(this.title, this.description, this.time);
 
   @override
   String toString() => title;
